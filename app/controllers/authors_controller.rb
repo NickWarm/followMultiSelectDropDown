@@ -28,6 +28,12 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
 
+    params[:books][:id].each do |book|
+      if !book.empty?
+        @author.authorbooks.build(:book_id => book)
+      end
+    end
+
     respond_to do |format|
       if @author.save
         format.html { redirect_to @author, notice: 'Author was successfully created.' }
