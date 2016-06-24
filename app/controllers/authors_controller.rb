@@ -10,6 +10,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
+    @author_book = @author.authorbooks
   end
 
   # GET /authors/new
@@ -21,6 +22,9 @@ class AuthorsController < ApplicationController
 
   # GET /authors/1/edit
   def edit
+    # TODO(MGP): Dry this and new up!
+    @all_books = Book.all
+    @author_book = @author.authorbooks.build
   end
 
   # POST /authors
