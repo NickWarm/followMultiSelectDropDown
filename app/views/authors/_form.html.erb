@@ -15,6 +15,14 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  <%= fields_for(@author_book) do |ab| %>
+    <div class="field">
+      <%= ab.label "All Books" %><br/>
+      <%= collection_select(:books, :id, @all_books, :id, :name, {}, {:multiple => true}) %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
