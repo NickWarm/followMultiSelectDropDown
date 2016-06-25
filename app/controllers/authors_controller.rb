@@ -16,15 +16,12 @@ class AuthorsController < ApplicationController
   # GET /authors/new
   def new
     @author = Author.new
-    @all_books = Book.all
-    @author_book = @author.authorbooks.build
+    get_books
   end
 
   # GET /authors/1/edit
   def edit
-    # TODO(MGP): Dry this and new up!
-    @all_books = Book.all
-    @author_book = @author.authorbooks.build
+    get_books
   end
 
   # POST /authors
@@ -54,6 +51,13 @@ class AuthorsController < ApplicationController
   def update
     respond_to do |format|
       if @author.update(author_params)
+        # http://guides.rubyonrails.org/association_basics.html
+        @author.books = []
+        params[:books][:id].each do |book|
+          if !book.empty?
+            @author.books << Book.find(book)
+          end
+        end
         format.html { redirect_to @author, notice: 'Author was successfully updated.' }
         format.json { render :show, status: :ok, location: @author }
       else
@@ -82,5 +86,11 @@ class AuthorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_params
       params.require(:author).permit(:name)
+    end
+
+    # Utility methods
+    def get_books
+      @all_books = Book.all
+      @author_book = @author.authorbooks.build
     end
 end
