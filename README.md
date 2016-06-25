@@ -2,6 +2,9 @@ follow along of https://www.youtube.com/watch?v=ZNrNGTe2Zqk "Tutorial: Multi Sel
 
 Done with rails 4.2 and some minor additions.  
 
+I still need to study the guides.  e.g. http://guides.rubyonrails.org/association_basics.html
+
 I'm learning.  Please give me constructive criticism.  Thanks :-)
 
-(erd.pdf)
+![entity relationship diagram]
+(erd.png)
