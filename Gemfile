@@ -45,3 +45,8 @@ group :development do
   gem 'spring'
 end
 
+
+# For making ERDs see https://github.com/voormedia/rails-erd
+gem 'ruby-graphviz'
+gem 'rails-erd'
+
